@@ -1,0 +1,35 @@
+.navbar {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.15);
+}
+
+.navList {
+  list-style: none;
+  display: flex;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+}
+
+.navList li a {
+  color: #ffffff;
+  text-decoration: none;
+  font-family: var(--font-michroma);
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.navList li a:hover {
+  color: #00ffff;
+  background-color: rgba(255, 255, 255, 0.08);
+}
