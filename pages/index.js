@@ -61,7 +61,6 @@ export default function Home() {
         <title>CelestaView</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-
       <div className="starry-background" id="stars"></div>
 
       <main>
