@@ -8,11 +8,15 @@ export default function Navbar() {
         <li>
           <Link href="/">Home</Link>
         </li>
-        <li>
-          <Link href="/about">About</Link>
-        </li>
+
         <li>
           <Link href="/journey">Go to space</Link>
+        </li>
+        <li>
+          <Link href="/spaceRoute">Space Route</Link>
+        </li>
+        <li>
+          <Link href="/about">About</Link>
         </li>
       </ul>
     </nav>

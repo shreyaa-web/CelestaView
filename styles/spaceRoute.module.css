@@ -1,0 +1,155 @@
+@import url("https://fonts.googleapis.com/css2?family=Michroma&display=swap");
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(ellipse at bottom, #0d1b2a 0%, #000000 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  font-family: "Michroma", sans-serif;
+  overflow: hidden;
+}
+
+.box {
+  background: #141627;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 0 30px #0ff;
+  text-align: center;
+  animation: fadeInUp 1s ease-in-out;
+}
+
+.heading {
+  font-size: 2.2rem;
+  margin-bottom: 25px;
+  text-shadow: 0 0 12px #0ff;
+}
+
+.form {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.input {
+  background: #111;
+  color: white;
+  border: 2px solid #0ff;
+  padding: 10px 15px;
+  border-radius: 10px;
+  min-width: 180px;
+}
+
+.button {
+  background: #00cfff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.button:hover {
+  background: #0099cc;
+}
+
+.error {
+  margin-top: 15px;
+  color: red;
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(5, 5, 20, 0.85);
+  backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.4s ease;
+}
+
+.modal {
+  background: #0e0f24;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 30px #0ff;
+  text-align: center;
+  animation: slideIn 0.6s ease-out;
+  max-width: 400px;
+  width: 90%;
+}
+
+.modalTitle {
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+  color: #00ffff;
+}
+
+.bodyList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+.bodyItem {
+  margin: 8px 0;
+  font-size: 1.1rem;
+  color: #fff;
+  text-shadow: 0 0 4px #0ff;
+}
+
+.closeBtn {
+  background: #ff1744;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.closeBtn:hover {
+  background: #c4002d;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: scale(0.8) translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}

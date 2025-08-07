@@ -211,3 +211,11 @@ body {
   color: #00e0ff;
   text-shadow: 0 0 5px #00e0ff;
 }
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}

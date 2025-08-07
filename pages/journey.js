@@ -65,7 +65,7 @@ export default function Journey() {
         style={{
           position: "absolute",
           top: "20px",
-          left: "50%",
+          left: "85%",
           transform: "translateX(-50%)",
           zIndex: 2,
           background: "rgba(0,0,0,0.6)",

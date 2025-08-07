@@ -54,7 +54,7 @@ export default function Home() {
       };
     }
   }, []);
-
+  //react fragment "<>"
   return (
     <>
       <Head>
@@ -62,7 +62,6 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <div className="starry-background" id="stars"></div>
-
       <main>
         <h1 className="fancy-title">CelestaView</h1>
 
