@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import planetData from "../data/planetData";
-import styles from "../styles/SpaceRoute.module.css";
+import styles from "../styles/spaceRoute.module.css";
 import Link from "next/link";
 
 export default function SpaceRoute() {
