@@ -1,6 +1,28 @@
+// pages/journey.js
 import { useEffect, useState } from "react";
-import PlanetScene from "../components/PlanetScene";
-import Navbar from "../components/Navbar"; // ✅ Make sure this path is correct
+import dynamic from "next/dynamic";
+import Navbar from "../components/Navbar"; // ✅ correct path
+
+// Load PlanetScene on the client only (avoids SSR issues with R3F)
+const PlanetScene = dynamic(() => import("../components/PlanetScene"), {
+  ssr: false,
+  // Quick friendly fallback while the bundle itself is loading
+  loading: () => (
+    <div
+      style={{
+        color: "white",
+        fontFamily: "Michroma, sans-serif",
+        textAlign: "center",
+        marginTop: "20vh",
+      }}
+    >
+      🚀 Loading your cosmic adventure…
+      <div style={{ fontSize: 14, opacity: 0.8 }}>
+        (Grabbing coffee for the astronauts ☕👩‍🚀)
+      </div>
+    </div>
+  ),
+});
 
 export default function Journey() {
   const [searchInput, setSearchInput] = useState("");
@@ -25,7 +47,6 @@ export default function Journey() {
     }
   }, []);
 
-  // Search handler
   const handleSearch = (e) => {
     e.preventDefault();
     const formatted = searchInput.trim();
@@ -109,7 +130,7 @@ export default function Journey() {
       </form>
 
       {/* 🌌 3D Planet Scene */}
-      <div style={{ position: "relative", zIndex: 1 }}>
+      <div style={{ position: "relative", zIndex: 1, height: "100%" }}>
         <PlanetScene searchTarget={searchTarget} />
       </div>
     </div>

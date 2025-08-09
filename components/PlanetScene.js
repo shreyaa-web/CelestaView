@@ -1,9 +1,10 @@
-import { Canvas, useThree } from "@react-three/fiber";
-import { OrbitControls, Html } from "@react-three/drei";
+// components/PlanetScene.js
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls, Html, useProgress } from "@react-three/drei";
+import { Suspense, useRef, useState, useEffect } from "react";
 import Planet from "./Planet";
-import { useRef, useState, useEffect } from "react";
+import LoadingOverlay from "./LoadingOverlay";
 
-// Fun facts
 const facts = {
   Sun: "☀️ The Sun contains 99.8% of the mass in the Solar System.",
   Mercury: "☿ Mercury has no atmosphere to retain heat.",
@@ -31,6 +32,9 @@ export default function PlanetScene({ searchTarget }) {
   const controlsRef = useRef();
   const cameraRef = useRef();
   const planetRefs = useRef({});
+
+  // Fade canvas in when assets finish loading
+  const { active } = useProgress(); // true while GLTFs/textures are loading
 
   const handlePlanetClick = (position, name) => {
     const offset = 50;
@@ -172,52 +176,65 @@ export default function PlanetScene({ searchTarget }) {
 
   return (
     <>
-      <Canvas
-        style={{ width: "100vw", height: "100vh" }}
-        camera={{ position: [0, 30, 1000], fov: 60 }}
-        onCreated={({ camera }) => (cameraRef.current = camera)}
+      <div
+        style={{
+          width: "100vw",
+          height: "100vh",
+          opacity: active ? 0 : 1, // hide while loading
+          transition: "opacity 400ms ease-out",
+        }}
       >
-        <ambientLight intensity={0.8} />
-        <directionalLight position={[50, 50, 50]} intensity={1} />
-        <OrbitControls
-          ref={controlsRef}
-          enableZoom
-          minDistance={0}
-          maxDistance={2000}
-        />
+        <Canvas
+          style={{ width: "100%", height: "100%" }}
+          camera={{ position: [0, 30, 1000], fov: 60 }}
+          onCreated={({ camera }) => (cameraRef.current = camera)}
+        >
+          <ambientLight intensity={0.8} />
+          <directionalLight position={[50, 50, 50]} intensity={1} />
 
-        {planets.map(({ name, path, position, scale }) => {
-          planetRefs.current[name] = position;
-          return (
-            <Planet
-              key={name}
-              name={name}
-              path={path}
-              position={position}
-              scale={scale}
-              onPlanetClick={handlePlanetClick}
-            />
-          );
-        })}
+          <OrbitControls
+            ref={controlsRef}
+            enableZoom
+            minDistance={0}
+            maxDistance={2000}
+          />
 
-        {selectedBody && selectedPosition && (
-          <Html position={selectedPosition} center>
-            <div
-              style={{
-                background: "rgba(0,0,0,0.7)",
-                color: "white",
-                padding: "6px 12px",
-                borderRadius: "8px",
-                fontFamily: "Michroma, sans-serif",
-                fontSize: "12px",
-                boxShadow: "0 0 5px rgba(255,255,255,0.4)",
-              }}
-            >
-              {selectedBody}
-            </div>
-          </Html>
-        )}
-      </Canvas>
+          {/* Suspense shows the loader while GLBs/textures stream in */}
+          <Suspense fallback={<LoadingOverlay />}>
+            {planets.map(({ name, path, position, scale }) => {
+              planetRefs.current[name] = position;
+              return (
+                <Planet
+                  key={name}
+                  name={name}
+                  path={path}
+                  position={position}
+                  scale={scale}
+                  onPlanetClick={handlePlanetClick}
+                />
+              );
+            })}
+
+            {selectedBody && selectedPosition && (
+              <Html position={selectedPosition} center>
+                <div
+                  style={{
+                    background: "rgba(0,0,0,0.7)",
+                    color: "white",
+                    padding: "6px 12px",
+                    borderRadius: "8px",
+                    fontFamily: "Michroma, sans-serif",
+                    fontSize: "12px",
+                    boxShadow: "0 0 5px rgba(255,255,255,0.4)",
+                  }}
+                >
+                  {selectedBody}
+                </div>
+              </Html>
+            )}
+          </Suspense>
+        </Canvas>
+      </div>
 
       {selectedBody && (
         <div
