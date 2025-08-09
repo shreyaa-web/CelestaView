@@ -4,26 +4,27 @@ import clientPromise from "@/lib/mongodb"; // optional logging; safe if MONGODB_
 
 // Keep your traversal order
 const allBodies = [
-  "mercury",
+  "sun", // ☀️ At the center
+  "mercury", // 🪐 Closest planet
   "venus",
   "earth",
-  "moon",
+  "moon", // 🌕 Earth's moon
   "mars",
+  "vesta", // Main asteroid belt
+  "pallas", // Main asteroid belt
+  "eros", // Near-Earth asteroid
+  "itokawa", // Near-Earth asteroid
+  "bennu", // Near-Earth asteroid
   "jupiter",
-  "europa",
-  "ganymede",
+  "europa", // Jupiter's moon
+  "ganymede", // Jupiter's moon
   "saturn",
-  "titan",
+  "titan", // Saturn's moon
   "uranus",
   "neptune",
-  "pluto",
-  "iss",
-  "hubble",
-  "vesta",
-  "pallas",
-  "eros",
-  "itokawa",
-  "bennu",
+  "pluto", // Dwarf planet in Kuiper belt
+  "iss", // Orbiting Earth
+  "hubble", // Orbiting Earth
 ];
 
 const norm = (s) =>
