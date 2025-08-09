@@ -12,35 +12,40 @@ export default function SpaceRoute() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
+    setShowModal(false);
 
     try {
       const res = await fetch("/api/search", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           source: source.trim().toLowerCase(),
           destination: destination.trim().toLowerCase(),
         }),
       });
 
-      const data = await res.json();
-      console.log("Backend response:", data);
+      // Only parse JSON if the server actually sent JSON
+      const isJson = res.headers
+        .get("content-type")
+        ?.toLowerCase()
+        .includes("application/json");
 
-      if (res.ok) {
-        setBodies(data.resultBodies);
-        setError("");
-        setShowModal(true); // Show modal on success
-      } else {
+      if (!res.ok) {
+        const errMsg = isJson
+          ? (await res.json())?.error
+          : `HTTP ${res.status}`;
         setBodies([]);
-        setError(data.error);
-        setShowModal(false);
+        setError(errMsg || "Request failed");
+        return;
       }
+
+      const data = isJson ? await res.json() : { resultBodies: [] };
+      setBodies(data.resultBodies || []);
+      setShowModal(true);
     } catch (err) {
       console.error("Fetch error:", err);
       setError("Something went wrong. Try again.");
-      setShowModal(false);
     }
   };
 
