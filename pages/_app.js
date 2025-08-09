@@ -1,13 +1,43 @@
+// pages/_app.js
 import "@/styles/globals.css";
 import { Michroma } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import { useEffect, useRef, useState } from "react";
+import { useGLTF } from "@react-three/drei"; // ✅ added for preloading
 
 const michroma = Michroma({
   subsets: ["latin"],
   weight: "400",
   variable: "--font-michroma",
 });
+
+// ✅ Preload your GLB assets once app mounts
+function PreloadModels() {
+  useEffect(() => {
+    const paths = [
+      "/models/sun.glb",
+      "/models/mercury.glb",
+      "/models/venus.glb",
+      "/models/earth_and_clouds.glb",
+      "/models/moon.glb",
+      "/models/mars.glb",
+      "/models/jupiter.glb",
+      "/models/saturn.glb",
+      "/models/uranus.glb",
+      "/models/neptune.glb",
+      "/models/pluto.glb",
+      "/models/International_Space_Station.glb",
+      "/models/hubble_space_telescope.glb",
+      "/models/vesta.glb",
+      "/models/pallas.glb",
+      "/models/eros.glb",
+      "/models/itokawa.glb",
+      "/models/bennu.glb",
+    ];
+    paths.forEach((p) => useGLTF.preload(p));
+  }, []);
+  return null;
+}
 
 export default function App({ Component, pageProps }) {
   const audioRef = useRef(null);
@@ -66,7 +96,7 @@ export default function App({ Component, pageProps }) {
         style={{ display: "none" }}
       />
 
-      {/* 🎵 Toggle button (bottom-left corner) */}
+      {/* 🎵 Toggle button (bottom-right corner) */}
       <button
         onClick={toggleAudio}
         style={{
@@ -87,6 +117,9 @@ export default function App({ Component, pageProps }) {
       >
         {isPlaying ? "⏸ Pause Music" : "▶️ Play Music"}
       </button>
+
+      {/* ✅ Preload models globally so Journey loads faster */}
+      <PreloadModels />
 
       <Component {...pageProps} />
     </main>

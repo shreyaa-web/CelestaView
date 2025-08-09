@@ -6,13 +6,15 @@ import Planet from "./Planet";
 import LoadingOverlay from "./LoadingOverlay";
 
 const facts = {
-  Sun: "☀️ The Sun contains 99.8% of the mass in the Solar System.",
+  Sun: `☀️ The Sun contains 99.8% of the mass in the Solar System.
+🌟 Pro Tip: If you don’t see anything at first, zoooooom out or refresh the page — everything will appear. It's not my fault, the Sun is just too big to fit in such a smol screen. 😏`,
   Mercury: "☿ Mercury has no atmosphere to retain heat.",
   Venus: "♀️ Venus spins backward compared to most planets.",
   Earth: "🌍 Earth is the only known planet with life.",
   Moon: "🌕 The Moon is drifting away from Earth ~3.8 cm/year.",
   Mars: "🔴 Mars has the tallest volcano in the Solar System.",
-  Jupiter: "🪐 Jupiter has at least 92 moons!",
+  Jupiter: `🪐 Jupiter has at least 92 moons!"
+  🌟 Pro Tip: Zooooom out a lil. Also, check out the asteroid belt beside me ;)`,
   Saturn: "💍 Saturn's rings are made of ice and rock.",
   Uranus: "🌀 Uranus spins on its side!",
   Neptune: "🔵 Neptune has supersonic winds.",
@@ -262,7 +264,10 @@ export default function PlanetScene({ searchTarget }) {
           >
             {selectedBody}
           </h2>
-          <p>{facts[selectedBody] || "No facts available."}</p>
+          <p style={{ whiteSpace: "pre-line" }}>
+            {facts[selectedBody] || "No facts available."}
+          </p>
+
           <a
             href={`/planet/${selectedBody.toLowerCase()}`}
             style={{
