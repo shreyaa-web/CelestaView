@@ -151,9 +151,9 @@ export default function LoginPage() {
           <button
             type="button"
             className={styles.googleBtn}
-            onClick={() =>
-              alert("Google auth not wired yet. (Password auth works!)")
-            }
+            onClick={() => {
+              window.location.href = "/api/auth/google";
+            }}
           >
             <span className={styles.gLogo}>G</span> Continue with Google
           </button>
