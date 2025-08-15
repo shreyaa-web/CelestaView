@@ -1,0 +1,204 @@
+.wrap {
+  min-height: 100vh;
+  min-width: 100vw;
+  background: radial-gradient(ellipse at bottom, #0d1b2a 0%, #000 100%);
+  color: var(--fg);
+  font-family: "Michroma", sans-serif;
+
+  /* ⬇️ switch from 2-column grid to centered flex */
+  display: flex;
+  justify-content: center; /* center horizontally */
+  align-items: center; /* center vertically */
+  position: relative;
+  overflow: hidden;
+
+  /* space for navbar at the top (adjust if needed) */
+  padding: 100px 16px 56px;
+}
+
+/* top-right switch */
+.topSwitch {
+  position: fixed;
+  top: 20px;
+  right: 24px;
+  z-index: 4;
+}
+.linkGhost {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  color: #ddd;
+  padding: 10px 14px;
+  border-radius: 14px;
+  cursor: pointer;
+  box-shadow: 0 0 14px rgba(0, 255, 255, 0.15);
+}
+.linkGhost span {
+  color: var(--cyan);
+}
+
+/* gradient band */
+.gradientBand {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+      60% 45% at 65% 55%,
+      rgba(0, 255, 255, 0.28),
+      rgba(0, 0, 0, 0) 70%
+    ),
+    radial-gradient(
+      50% 40% at 30% 80%,
+      rgba(180, 144, 202, 0.28),
+      rgba(0, 0, 0, 0) 65%
+    );
+  filter: blur(28px);
+  opacity: 1%;
+}
+
+/* card */
+.card {
+  position: relative;
+  z-index: 2;
+
+  /* ✅ lock to container, not content */
+  width: 100%;
+  max-width: 550px; /* your desired width cap */
+  box-sizing: border-box;
+
+  margin: 0;
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+}
+
+.title {
+  text-align: center;
+  margin: 8px 0 18px;
+  font-size: 28px;
+  color: #e9f7ff;
+  text-shadow: 0 0 12px rgba(0, 255, 255, 0.25);
+}
+
+/* tabs */
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin: 0 0 12px;
+}
+.tabBtn {
+  flex: 1;
+  padding: 12px 10px;
+  background: transparent;
+  border: 1px solid var(--cyan);
+  color: var(--accent);
+  border-radius: 12px;
+  cursor: pointer;
+}
+.active {
+  background: var(--cyan);
+  color: #000;
+}
+
+/* google button placeholder */
+.googleBtn {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #111827;
+  color: #e5e7eb;
+  cursor: pointer;
+  margin-top: 6px;
+}
+.gLogo {
+  display: inline-grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  color: #000;
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+/* divider */
+.orRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 14px 0;
+}
+.orLine {
+  height: 1px;
+  flex: 1;
+  background: var(--border);
+}
+.orText {
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: #a3b4c4;
+}
+
+/* form */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 10px 0;
+}
+.field label {
+  font-size: 12px;
+  color: #a3b4c4;
+}
+.field input {
+  background: var(--ink);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  outline: none;
+  padding: 12px 14px;
+  border-radius: 12px;
+}
+.field input:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 3px rgba(0, 255, 255, 0.15);
+}
+
+.submit {
+  width: 100%;
+  padding: 12px 14px;
+  background: var(--cyan);
+  color: #000;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  margin-top: 6px;
+  font-weight: bold;
+}
+
+.msg {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  text-align: center;
+
+  /* keep card width stable and wrap long text */
+  max-width: 100%;
+  white-space: normal;
+  word-break: break-word; /* break very long words/URLs */
+  overflow-wrap: anywhere; /* modern wrap helper */
+  line-height: 1.4;
+}
+
+.tiny {
+  margin-top: 14px;
+  font-size: 11px;
+  text-align: center;
+  color: #a3b4c4;
+}
+.tiny a {
+  color: var(--accent);
+}

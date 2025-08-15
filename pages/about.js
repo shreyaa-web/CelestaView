@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Starfield from "@/components/Starfield";
 
 export default function About() {
   return (
@@ -10,6 +11,7 @@ export default function About() {
           content="Learn more about CelestaView, the 3D space journey visualizer created by Shreya Upadhyaya."
         />
       </Head>
+      <Starfield count={300} />
 
       <main
         style={{
@@ -22,7 +24,13 @@ export default function About() {
           margin: "auto",
         }}
       >
-        <h1 style={{ fontSize: "2.2rem", marginBottom: "1rem", color: "#6cf" }}>
+        <h1
+          style={{
+            fontSize: "2.2rem",
+            marginBottom: "1rem",
+            color: "rgba(202, 236, 252, 1)",
+          }}
+        >
           About CelestaView
         </h1>
 
@@ -34,7 +42,9 @@ export default function About() {
           interactive and educational format.
         </p>
 
-        <h2 style={{ marginTop: "2rem", color: "#6cf" }}>🌟 Features</h2>
+        <h2 style={{ marginTop: "2rem", color: "rgba(202, 236, 252, 1)" }}>
+          Features
+        </h2>
         <ul>
           <li>
             3D models of planets, moons, asteroids, and satellites (.glb format)
@@ -49,8 +59,8 @@ export default function About() {
           <li>Responsive design for desktop and mobile</li>
         </ul>
 
-        <h2 style={{ marginTop: "2rem", color: "#6cf" }}>
-          🛠 Technologies Used
+        <h2 style={{ marginTop: "2rem", color: "rgba(202, 236, 252, 1)" }}>
+          Technologies Used
         </h2>
         <ul>
           <li>
@@ -67,7 +77,9 @@ export default function About() {
           <li>Custom CSS for animated stars and visual effects</li>
         </ul>
 
-        <h2 style={{ marginTop: "2rem", color: "#6cf" }}>🚀 Future Scope</h2>
+        <h2 style={{ marginTop: "2rem", color: "rgba(202, 236, 252, 1)" }}>
+          Future Scope
+        </h2>
         <ul>
           <li>
             Enable dynamic space travel simulation (user selects source and
@@ -77,32 +89,37 @@ export default function About() {
           <li>
             Integrate NASA’s APIs for live data, media, and discovery info
           </li>
-          <li>
-            Introduce audio narration and background music for cinematic feel
-          </li>
+          <li>Introduce audio narration</li>
           <li>
             Expand into a learning platform with quizzes and visual missions
           </li>
+          <li>Add comment sections for each body, login page and more.</li>
         </ul>
 
-        <h2 style={{ marginTop: "2rem", color: "#6cf" }}>👩‍💻 Creator</h2>
+        <h2 style={{ marginTop: "2rem", color: "rgba(202, 236, 252, 1)" }}>
+          Creator
+        </h2>
         <p>
-          This project was designed and developed by{" "}
-          <strong>Shreya Upadhyaya</strong>, an aspiring developer passionate
-          about blending creativity and technology.
+          Hey Guys! This project was designed and developed by me,{" "}
+          <strong>Shreya Upadhyaya</strong>, I am an aspiring developer and I
+          love to blend creativity and technology. Do let me know what you feel
+          about this! Bye! Here are my socials-
         </p>
         <p>
-          📧 Contact:{" "}
-          <a href="mailto:shxeyaa@gmail.com" style={{ color: "#6cf" }}>
+          Contact:{" "}
+          <a
+            href="mailto:shxeyaa@gmail.com"
+            style={{ color: "rgba(202, 236, 252, 1)" }}
+          >
             shxeyaa@gmail.com
           </a>
           <br />
-          🌐 GitHub:{" "}
+          GitHub:{" "}
           <a
             href="https://github.com/shreyaa-web"
             target="_blank"
             rel="noreferrer"
-            style={{ color: "#6cf" }}
+            style={{ color: "rgba(202, 236, 252, 1)" }}
           >
             @shreyaa-web
           </a>

@@ -1,7 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Michroma&display=swap");
+
+:root {
+  --cyan: #00ffff;
+  --ink: #0b0f19;
+  --bg: #000000;
+  --glass: rgba(255, 255, 255, 0.06);
+  --border: rgba(255, 255, 255, 0.15);
+  --fg: #ffffff;
+  --accent: #6cf;
+}
+
 html,
 main {
   position: relative;
-  z-index: 1;
+  z-index: 0;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -15,7 +27,7 @@ main {
   left: 0;
   height: 100%;
   width: 100%;
-  z-index: 0;
+  z-index: 1;
   overflow: hidden;
 }
 
@@ -48,15 +60,6 @@ main {
   opacity: 0.8;
 }
 
-/* Pointy glow star */
-.star.pointy {
-  background: radial-gradient(white 10%, transparent 70%);
-  width: 3px;
-  height: 3px;
-  opacity: 0.9;
-  filter: blur(0.5px);
-}
-
 @keyframes twinkle {
   from {
     opacity: 0.4;
@@ -81,6 +84,9 @@ main {
   height: 6px;
   background: transparent;
   position: absolute;
+  transform: rotate(45deg); /* ← add this */
+  transform-origin: center center;
+  background: radial-gradient(white 10%, transparent 70%); /* faint core glow */
 }
 
 .star.pointy::before,
@@ -187,30 +193,6 @@ body {
   }
 }
 
-.navbar {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 100%;
-  padding: 1rem 2rem;
-  background: rgba(0, 0, 0, 0.6); /* subtle transparent bar */
-  display: flex;
-  justify-content: flex-end;
-  gap: 2rem;
-  z-index: 1000;
-}
-
-.navbar a {
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 1rem;
-  transition: color 0.3s ease;
-}
-
-.navbar a:hover {
-  color: #00e0ff;
-  text-shadow: 0 0 5px #00e0ff;
-}
 html,
 body {
   height: 100%;

@@ -1,6 +1,7 @@
 // pages/api/search.js
 import planetData from "@/data/planetData";
 import clientPromise from "@/lib/mongodb"; // optional logging; safe if MONGODB_URI not set
+import { getTokenFromReq, verifyToken } from "./_utils/auth";
 
 // Keep your traversal order
 const allBodies = [
@@ -55,12 +56,27 @@ export default async function handler(req, res) {
     const to = Math.max(startIndex, endIndex);
     const resultBodies = allBodies.slice(from + 1, to);
 
+    let userId = null;
+    let userEmail = null;
+    try {
+      const token = getTokenFromReq(req); // reads cv_token cookie
+      if (token) {
+        const decoded = verifyToken(token); // { uid, email }
+        userId = decoded?.uid || null;
+        userEmail = decoded?.email || null;
+      }
+    } catch (e) {
+      console.warn("search auth decode failed:", e?.message);
+    }
+
     // OPTIONAL: Log to MongoDB Atlas so you can “see” requests
     try {
       if (process.env.MONGODB_URI) {
         const client = await clientPromise;
         const db = client.db("celestaview");
         await db.collection("routeLogs").insertOne({
+          userId: userId || null,
+          userEmail: userEmail || null,
           source: src,
           destination: dst,
           resultBodies,

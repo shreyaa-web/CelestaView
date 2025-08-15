@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import planetData from "../data/planetData";
 import styles from "../styles/spaceRoute.module.css";
 import Link from "next/link";
+import Starfield from "@/components/Starfield";
 
 export default function SpaceRoute() {
   const [source, setSource] = useState("");
@@ -71,7 +72,7 @@ export default function SpaceRoute() {
         </form>
         {error && <p className={styles.error}>{error}</p>}
       </div>
-
+      <Starfield count={300} />
       {/* Modal */}
       {showModal && (
         <div
@@ -80,6 +81,7 @@ export default function SpaceRoute() {
         >
           <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
             <h2 className={styles.modalTitle}>🪐 Intermediate Bodies</h2>
+
             <ul className={styles.bodyList}>
               {bodies.map((body, index) => (
                 <li key={index} className={styles.bodyItem}>

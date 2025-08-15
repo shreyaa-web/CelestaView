@@ -3,7 +3,8 @@ import "@/styles/globals.css";
 import { Michroma } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import { useEffect, useRef, useState } from "react";
-import { useGLTF } from "@react-three/drei"; // ✅ added for preloading
+import { useGLTF } from "@react-three/drei"; // added for preloading
+import { UserProvider } from "@/components/UserProvider";
 
 const michroma = Michroma({
   subsets: ["latin"],
@@ -11,7 +12,7 @@ const michroma = Michroma({
   variable: "--font-michroma",
 });
 
-// ✅ Preload your GLB assets once app mounts
+// Preload your GLB assets once app mounts
 function PreloadModels() {
   useEffect(() => {
     const paths = [
@@ -84,44 +85,46 @@ export default function App({ Component, pageProps }) {
   };
 
   return (
-    <main className={michroma.variable}>
-      <Navbar />
+    <UserProvider>
+      <main className={michroma.variable}>
+        <Navbar />
 
-      {/* 🔊 Global background audio (hidden player) */}
-      <audio
-        ref={audioRef}
-        src="/cosmic-space.mp3"
-        loop
-        preload="auto"
-        style={{ display: "none" }}
-      />
+        {/* Global background audio (hidden player) */}
+        <audio
+          ref={audioRef}
+          src="/cosmic-space.mp3"
+          loop
+          preload="auto"
+          style={{ display: "none" }}
+        />
 
-      {/* 🎵 Toggle button (bottom-right corner) */}
-      <button
-        onClick={toggleAudio}
-        style={{
-          position: "fixed",
-          bottom: "20px",
-          right: "20px",
-          zIndex: 9999,
-          padding: "10px 16px",
-          borderRadius: "8px",
-          background: "#111",
-          color: "white",
-          border: "1px solid #555",
-          cursor: "pointer",
-          fontFamily: "Michroma, sans-serif",
-          fontSize: "0.8rem",
-          boxShadow: "0 0 10px rgba(255,255,255,0.2)",
-        }}
-      >
-        {isPlaying ? "⏸ Pause Music" : "▶️ Play Music"}
-      </button>
+        {/*  Toggle button (bottom-right corner) */}
+        <button
+          onClick={toggleAudio}
+          style={{
+            position: "fixed",
+            bottom: "20px",
+            right: "20px",
+            zIndex: 9999,
+            padding: "10px 16px",
+            borderRadius: "8px",
+            background: "#111",
+            color: "white",
+            border: "1px solid #555",
+            cursor: "pointer",
+            fontFamily: "Michroma, sans-serif",
+            fontSize: "0.8rem",
+            boxShadow: "0 0 10px rgba(255,255,255,0.2)",
+          }}
+        >
+          {isPlaying ? "⏸ Pause Music" : "▶ Play Music"}
+        </button>
 
-      {/* ✅ Preload models globally so Journey loads faster */}
-      <PreloadModels />
+        {/*Preload models globally so Journey loads faster */}
+        <PreloadModels />
 
-      <Component {...pageProps} />
-    </main>
+        <Component {...pageProps} />
+      </main>
+    </UserProvider>
   );
 }
